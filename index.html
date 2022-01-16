@@ -47,6 +47,9 @@
             
             <div class="card">
                 <div class="card-body login-card-body">
+
+                  <div  role="alert" v-bind:class="[alert,isFormSend ? 'alert-success':'alert-danger']" v-if="isFormSend">Formulário enviado com sucesso</div>
+
                   <transition name="fade-login" mode="out-in">
                     <div class="login" v-if="action =='login'" key="login">
 
@@ -80,7 +83,7 @@
                             </div>
                             
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block"@click.prevent="sendForm">Login</button>
                             </div>
                             
                             </div>
@@ -136,7 +139,7 @@
                               </div>
                               
                               <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                                <button type="submit" class="btn btn-primary btn-block" @click.prevent="sendForm">Cadastrar</button>
                               </div>
                               
                             </div>
@@ -161,6 +164,9 @@
             methods:{
               changeAction(action){
                 this.action=action;
+              },
+              sendForm(){
+                this.isFormSend=true;
               }
             }
           })
